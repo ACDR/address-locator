@@ -23,7 +23,6 @@ const AddressAutocomplete = () => {
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then((latLngData) => {
-          console.log('Success', latLng);
           setLatLng(latLngData);
 
           setTimeout(() => {
