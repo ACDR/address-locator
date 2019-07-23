@@ -10,7 +10,7 @@ const AddressAutocomplete = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [addressValue, setAddressValue] = useState('');
   const [flipping, setFlipping] = useState(false);
-  const [latLng, setLatLng] = useState();
+  const [latLng, setLatLng] = useState(null);
 
   const handleChange = (address) => {
     setAddressValue(address);
