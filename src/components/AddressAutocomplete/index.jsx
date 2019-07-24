@@ -21,6 +21,7 @@ const AddressAutocomplete = () => {
     setFlipping(true);
     setAddressValue(address);
 
+    // Delay until flip animation hides the content (200ms)
     setTimeout(() => {
       setAddressSelected(true);
       setFlipping(false);
