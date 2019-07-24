@@ -43,7 +43,7 @@ const AddressAutocomplete = () => {
         onLoad={() => setScriptLoaded(true)}
       />
 
-      {scriptLoaded && !addressSelected ? (
+      {scriptLoaded && !addressSelected && (
         <div className="c-address-autocomplete__field">
           <label htmlFor="addressInput">Address</label>
           <PlacesAutocomplete
@@ -86,9 +86,9 @@ const AddressAutocomplete = () => {
             )}
           </PlacesAutocomplete>
         </div>
-      ) : null}
+      )}
 
-      {scriptLoaded && addressSelected ? <Map latLng={latLng} /> : null}
+      {scriptLoaded && addressSelected && <Map latLng={latLng} />}
     </div>
   );
 };
