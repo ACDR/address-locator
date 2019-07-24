@@ -39,7 +39,7 @@ const AddressAutocomplete = () => {
       <Script
         url={`https://maps.googleapis.com/maps/api/js?key=${process.env.GATSBY_GOOGLE_API_KEY}&libraries=places`}
         onError={(error) => { console.error(error); }}
-        onLoad={() => { if (!scriptLoaded) setScriptLoaded(true); }}
+        onLoad={() => setScriptLoaded(true)}
       />
 
       {scriptLoaded && !addressSelected ? (
