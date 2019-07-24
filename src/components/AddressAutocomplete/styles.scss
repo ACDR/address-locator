@@ -1,7 +1,7 @@
 .c-address-autocomplete {
   box-sizing: border-box;
   width: 100%;
-  max-width: 700px;
+  max-width: 660px;
   padding: 50px;
   margin: 0 auto 50px;
   background-color: #fff;
@@ -13,8 +13,13 @@
     transform: rotateX(-90deg);
   }
 
-  &.has-coordinates {
+  &.has-address {
     padding: 10px;
+  }
+
+  &__map {
+    height: 400px;
+    background-color: #a7cdf2;
   }
 
   &__field {

@@ -1,5 +1,13 @@
-.c-map {
+.c-map-container {
   height: 400px;
-  transform: translate3d(0,0,0);
-  background-color: #a7cdf2;
+  background-color: #E8E8E8;
+}
+
+.c-map {
+  height: 100%;
+  transition: opacity 300ms;
+
+  &:not(.is-ready) {
+    opacity: 0;
+  }
 }

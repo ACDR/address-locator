@@ -9,8 +9,9 @@ import './styles.scss';
 const AddressAutocomplete = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [addressValue, setAddressValue] = useState('');
+  const [addressSelected, setAddressSelected] = useState(false);
   const [flipping, setFlipping] = useState(false);
-  const [latLng, setLatLng] = useState(null);
+  const [latLng, setLatLng] = useState(null); // Default as Auckland
 
   const handleChange = (address) => {
     setAddressValue(address);
@@ -18,30 +19,30 @@ const AddressAutocomplete = () => {
 
   const handleSelect = (address) => {
     setFlipping(true);
+    setAddressValue(address);
 
     setTimeout(() => {
+      setAddressSelected(true);
+      setFlipping(false);
+
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then((latLngData) => {
           setLatLng(latLngData);
-
-          setTimeout(() => {
-            setFlipping(false);
-          }, 10);
         })
         .catch(error => console.error('Error', error));
-    }, 190);
+    }, 200);
   };
 
   return (
-    <div className={`c-address-autocomplete${flipping ? ' is-flipping' : ''}${latLng ? ' has-coordinates' : ''}`}>
+    <div className={`c-address-autocomplete${flipping ? ' is-flipping' : ''}${addressSelected ? ' has-address' : ''}`}>
       <Script
         url={`https://maps.googleapis.com/maps/api/js?key=${process.env.GATSBY_GOOGLE_API_KEY}&libraries=places`}
         onError={(error) => { console.error(error); }}
         onLoad={() => { if (!scriptLoaded) setScriptLoaded(true); }}
       />
 
-      {scriptLoaded && !latLng ? (
+      {scriptLoaded && !addressSelected ? (
         <div className="c-address-autocomplete__field">
           <label htmlFor="addressInput">Address</label>
           <PlacesAutocomplete
@@ -86,7 +87,7 @@ const AddressAutocomplete = () => {
         </div>
       ) : null}
 
-      {scriptLoaded && latLng ? <Map latLng={latLng} /> : null}
+      {scriptLoaded && addressSelected ? <Map latLng={latLng} /> : null}
     </div>
   );
 };

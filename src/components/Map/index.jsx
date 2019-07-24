@@ -16,14 +16,18 @@ const Map = ({ latLng }) => {
 
   return (
     <MapComponent
-      containerElement={<div />}
-      mapElement={<div className="c-map" />}
+      containerElement={<div className="c-map-container" />}
+      mapElement={<div className={`c-map ${latLng ? 'is-ready' : ''}`} />}
     />
   );
 };
 
 Map.propTypes = {
-  latLng: PropTypes.object.isRequired,
+  latLng: PropTypes.object,
+};
+
+Map.defaultProps = {
+  latLng: null,
 };
 
 export default Map;
